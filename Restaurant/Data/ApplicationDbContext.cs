@@ -34,6 +34,76 @@ namespace Restaurant.Data
                 .HasOne(x => x.Ingredient)
                 .WithMany(p => p.ProductIngredients)
                 .HasForeignKey(x => x.IngredientId);
+
+            builder.Entity<Category>()
+                   .HasData
+                   (
+                        new Category() { CategoryId = 1, Name = "Appetizer" },
+                        new Category() { CategoryId = 2, Name = "Entree" },
+                        new Category() { CategoryId = 3, Name = "Side Dish" },
+                        new Category() { CategoryId = 4, Name = "Dessert" },
+                        new Category() { CategoryId = 5, Name = "Beverage" }
+                   );
+
+            builder.Entity<Ingredient>()
+                .HasData
+                (
+                    new Ingredient() { IngredientId = 1, Name = "Beef" },
+                    new Ingredient() { IngredientId = 2, Name = "Chiken" },
+                    new Ingredient() { IngredientId = 3, Name = "Fish" },
+                    new Ingredient() { IngredientId = 4, Name = "Tortilla" },
+                    new Ingredient() { IngredientId = 5, Name = "Lettuce" },
+                    new Ingredient() { IngredientId = 6, Name = "Tomato" }
+                );
+
+            builder.Entity<Product>()
+                .HasData
+                (
+                    new Product()
+                    {
+                        ProductId = 1,
+                        Name = "Beef Taco",
+                        Description = "A delicious beef taco",
+                        Price = 2.50m,
+                        Stock = 100,
+                        CategoryId = 2,
+                    },
+                    new Product()
+                    {
+                        ProductId = 2,
+                        Name = "Chiken Taco",
+                        Description = "A delicious chiken taco",
+                        Price = 1.99m,
+                        Stock = 101,
+                        CategoryId = 2,
+                    },
+                    new Product()
+                    {
+                        ProductId = 3,
+                        Name = "Fish Taco",
+                        Description = "A delicious fish taco",
+                        Price = 3.99m,
+                        Stock = 90,
+                        CategoryId = 2,
+                    }
+                );
+
+            builder.Entity<ProductIngredient>()
+                .HasData
+                (
+                    new ProductIngredient() { ProductId = 1, IngredientId = 1 },
+                    new ProductIngredient() { ProductId = 1, IngredientId = 4 },
+                    new ProductIngredient() { ProductId = 1, IngredientId = 5 },
+                    new ProductIngredient() { ProductId = 1, IngredientId = 6 },
+                    new ProductIngredient() { ProductId = 2, IngredientId = 2 },
+                    new ProductIngredient() { ProductId = 2, IngredientId = 4 },
+                    new ProductIngredient() { ProductId = 2, IngredientId = 5 },
+                    new ProductIngredient() { ProductId = 2, IngredientId = 6 },
+                    new ProductIngredient() { ProductId = 3, IngredientId = 3 },
+                    new ProductIngredient() { ProductId = 3, IngredientId = 4 },
+                    new ProductIngredient() { ProductId = 3, IngredientId = 5 },
+                    new ProductIngredient() { ProductId = 3, IngredientId = 6 }
+                );
         }
     }
 }
